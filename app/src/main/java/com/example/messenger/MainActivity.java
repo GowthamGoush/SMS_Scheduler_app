@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CheckPermission();
                 if(!textView.getText().toString().isEmpty() && !editMsg.getText().toString().isEmpty() && !editNum.getText().toString().isEmpty() && Permission_granted){
 
                     AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 }
                 else {
                     if(!Permission_granted){
-                        Toast toast = Toast.makeText(getApplicationContext(),"Grant permission to proceed !",Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(),"Grant permission to proceed !",Toast.LENGTH_LONG);
                         toast.show();
                     }
                     else {
@@ -124,8 +125,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
                     Permission_granted = true;
-                    Toast toast = Toast.makeText(getApplicationContext(),"Permission Granted",Toast.LENGTH_SHORT);
-                    toast.show();
                 }
                 else {
                     Toast toast = Toast.makeText(getApplicationContext(),"Permission was denied !",Toast.LENGTH_SHORT);
